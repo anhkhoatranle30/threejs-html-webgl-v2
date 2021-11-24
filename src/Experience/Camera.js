@@ -47,7 +47,7 @@ export default class Camera {
       .to(this.instance.position, {
         duration: jumpDuration,
         x: `+= ${destination.x - currentPosition.x}`,
-        y: 0.5,
+        y: `+= ${destination.y - currentPosition.y}`,
         z: `+= ${destination.z - currentPosition.z}`,
       })
       .then(() => {
