@@ -12,7 +12,7 @@ const experience = new Experience(document.querySelector('canvas.webgl'));
 /**
  * Sound effects
  */
-const wooshAudio = new Audio('/audio/woosh.mp3');
+const wooshAudio = new Audio('/audio/whoosh.wav');
 /**
  * Text
  */
