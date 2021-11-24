@@ -6,7 +6,7 @@ import MODELS, {
 } from './Experience/Constants/modelAttributes';
 
 let currentObject = 0;
-const jumpDuration = 2;
+const jumpDuration = 3;
 const experience = new Experience(document.querySelector('canvas.webgl'));
 
 /**
