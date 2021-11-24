@@ -9,7 +9,8 @@ export default class Environment {
 
     // Setup
     this.setSunLight();
-    // this.setEnvironmentMap();
+    this.setEnvironmentMap();
+    this.setCoordinatesHelpers();
   }
 
   setSunLight() {
@@ -20,6 +21,9 @@ export default class Environment {
     this.sunLight.shadow.normalBias = 0.05;
     this.sunLight.position.set(3, 3, -2.25);
     this.scene.add(this.sunLight);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 5);
+    this.scene.add(ambientLight);
   }
 
   setEnvironmentMap() {
@@ -46,5 +50,12 @@ export default class Environment {
     this.scene.environment = this.environmentMap.texture;
 
     this.environmentMap.updateMaterials();
+  }
+
+  setCoordinatesHelpers() {
+    const gridHelper = new THREE.GridHelper(200, 100);
+    gridHelper.position.y -= 0.5;
+    const axesHelper = new THREE.AxesHelper(200);
+    this.experience.scene.add(gridHelper, axesHelper);
   }
 }

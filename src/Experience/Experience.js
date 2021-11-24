@@ -30,6 +30,7 @@ export default class Experience {
     this.renderer = new Renderer();
     this.resources = new Resources(sources);
     this.world = new World();
+
     // Size resize events
     this.sizes.on('resize', () => {
       this.resize();
