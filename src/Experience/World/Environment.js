@@ -53,7 +53,7 @@ export default class Environment {
   }
 
   setCoordinatesHelpers() {
-    const gridHelper = new THREE.GridHelper(200, 100);
+    const gridHelper = new THREE.GridHelper(500, 100);
     gridHelper.position.y -= 0.5;
     const axesHelper = new THREE.AxesHelper(200);
     this.experience.scene.add(gridHelper, axesHelper);

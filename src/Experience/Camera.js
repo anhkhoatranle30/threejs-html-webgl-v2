@@ -20,9 +20,9 @@ export default class Camera {
       75,
       this.sizes.width / this.sizes.height,
       0.1,
-      100
+      1000
     );
-    this.instance.position.copy(MODELS.droneModel.camera);
+    this.instance.position.copy(MODELS[Object.keys(MODELS)[0]].camera);
     this.scene.add(this.instance);
   }
 
