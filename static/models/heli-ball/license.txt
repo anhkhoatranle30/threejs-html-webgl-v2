@@ -1,0 +1,11 @@
+Model Information:
+* title:	Heli-Ball
+* source:	https://sketchfab.com/3d-models/heli-ball-319261892e0448de8de3327d2f24f1de
+* author:	berzerkey (https://sketchfab.com/berzerkey)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Heli-Ball" (https://sketchfab.com/3d-models/heli-ball-319261892e0448de8de3327d2f24f1de) by berzerkey (https://sketchfab.com/berzerkey) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -21,6 +21,11 @@ export default [
     type: 'gltfModel',
     path: 'models/mazda_car/scene.gltf',
   },
+  {
+    name: 'heliBall',
+    type: 'gltfModel',
+    path: 'models/heli-ball/scene.gltf',
+  },
 ];
 
 // export default [
