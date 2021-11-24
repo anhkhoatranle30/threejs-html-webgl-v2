@@ -25,13 +25,12 @@ const switchModel = () => {
 
 prevBtn.onclick = () => {
   currentObject--;
-  console.log('prev, ', currentObject);
   triggerDisabledButton();
+  switchModel();
   // jumpToAnotherObject();
 };
 nextBtn.onclick = () => {
   currentObject++;
-  console.log('next, ', currentObject);
   triggerDisabledButton();
   switchModel();
   // jumpToAnotherObject();
