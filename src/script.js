@@ -1,10 +1,37 @@
 import './style.css';
 import Experience from './Experience/Experience';
-import MODELS from './Experience/Constants/modelAttributes';
+import MODELS, {
+  textPositions,
+  modelNames,
+} from './Experience/Constants/modelAttributes';
 
 let currentObject = 0;
 const jumpDuration = 2;
 const experience = new Experience(document.querySelector('canvas.webgl'));
+
+/**
+ * Text
+ */
+const domTextElement = {
+  [`${textPositions.left}`]: document.querySelector('.left.text'),
+  [`${textPositions.right}`]: document.querySelector('.right.text'),
+};
+
+const hideAllTextDomElement = () => {
+  for (const key in domTextElement) {
+    domTextElement[key].style.opacity = 0;
+  }
+};
+
+const fillTextContent = () => {
+  const currentTextContent = MODELS[modelNames[currentObject]].text.content;
+  const currentTextPosition = MODELS[modelNames[currentObject]].text.position;
+
+  const currentElement = domTextElement[currentTextPosition];
+  currentElement.style.opacity = 1;
+  currentElement.innerHTML = currentTextContent;
+};
+fillTextContent();
 /**
  * Next & Previous buttons
  */
@@ -23,17 +50,22 @@ const switchModel = () => {
   experience.switchModel(Object.keys(MODELS)[currentObject], jumpDuration);
 };
 
-prevBtn.onclick = () => {
-  currentObject--;
+const onSwitchModelButtonClick = () => {
+  hideAllTextDomElement();
   triggerDisabledButton();
   switchModel();
-  // jumpToAnotherObject();
+  setTimeout(() => {
+    fillTextContent();
+  }, jumpDuration * 1000);
+};
+
+prevBtn.onclick = () => {
+  currentObject--;
+  onSwitchModelButtonClick();
 };
 nextBtn.onclick = () => {
   currentObject++;
-  triggerDisabledButton();
-  switchModel();
-  // jumpToAnotherObject();
+  onSwitchModelButtonClick();
 };
 
 // import * as THREE from 'three';

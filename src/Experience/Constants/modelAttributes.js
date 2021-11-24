@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-const textPositions = {
+export const textPositions = {
   right: 'right',
   left: 'left',
 };
@@ -39,3 +39,5 @@ const MODELS = {
 };
 
 export default MODELS;
+
+export const modelNames = Object.keys(MODELS);
