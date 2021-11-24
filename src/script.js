@@ -10,6 +10,10 @@ const jumpDuration = 2;
 const experience = new Experience(document.querySelector('canvas.webgl'));
 
 /**
+ * Sound effects
+ */
+const wooshAudio = new Audio('/audio/woosh.mp3');
+/**
  * Text
  */
 const domTextElement = {
@@ -39,6 +43,8 @@ const prevBtn = document.querySelector('#prev-btn');
 const nextBtn = document.querySelector('#next-btn');
 
 const triggerDisabledButton = () => {
+  prevBtn.style.display = 'inline-block';
+  nextBtn.style.display = 'inline-block';
   // prevBtn
   prevBtn.disabled = currentObject === 0;
   // nextBtn
@@ -46,16 +52,31 @@ const triggerDisabledButton = () => {
 };
 triggerDisabledButton();
 
+const hideAllButton = () => {
+  prevBtn.style.display = 'none';
+  nextBtn.style.display = 'none';
+};
+
 const switchModel = () => {
   experience.switchModel(Object.keys(MODELS)[currentObject], jumpDuration);
 };
 
 const onSwitchModelButtonClick = () => {
+  // Sound
+  wooshAudio.currentTime = 0;
+  wooshAudio.play();
+  // Text
   hideAllTextDomElement();
-  triggerDisabledButton();
+  // Buttons
+  hideAllButton();
+  // Experience
   switchModel();
+  // After the switch has completed
   setTimeout(() => {
+    // Text
     fillTextContent();
+    // Buttons
+    triggerDisabledButton();
   }, jumpDuration * 1000);
 };
 
