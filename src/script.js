@@ -3,12 +3,14 @@ import Experience from './Experience/Experience';
 import MODELS from './Experience/Constants/modelAttributes';
 
 let currentObject = 0;
+const jumpDuration = 2;
 const experience = new Experience(document.querySelector('canvas.webgl'));
 /**
  * Next & Previous buttons
  */
 const prevBtn = document.querySelector('#prev-btn');
 const nextBtn = document.querySelector('#next-btn');
+
 const triggerDisabledButton = () => {
   // prevBtn
   prevBtn.disabled = currentObject === 0;
@@ -16,6 +18,11 @@ const triggerDisabledButton = () => {
   nextBtn.disabled = currentObject === Object.keys(MODELS).length - 1;
 };
 triggerDisabledButton();
+
+const switchModel = () => {
+  experience.switchModel(Object.keys(MODELS)[currentObject], jumpDuration);
+};
+
 prevBtn.onclick = () => {
   currentObject--;
   console.log('prev, ', currentObject);
@@ -26,6 +33,7 @@ nextBtn.onclick = () => {
   currentObject++;
   console.log('next, ', currentObject);
   triggerDisabledButton();
+  switchModel();
   // jumpToAnotherObject();
 };
 

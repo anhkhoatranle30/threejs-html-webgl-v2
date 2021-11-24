@@ -1,6 +1,7 @@
+import gsap from 'gsap';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import POSITIONS from './Constants/modelAttributes.js';
+import MODELS from './Constants/modelAttributes.js';
 import Experience from './Experience.js';
 
 export default class Camera {
@@ -21,7 +22,7 @@ export default class Camera {
       0.1,
       100
     );
-    this.instance.position.copy(POSITIONS.droneModel.camera);
+    this.instance.position.copy(MODELS.droneModel.camera);
     this.scene.add(this.instance);
   }
 
@@ -37,5 +38,20 @@ export default class Camera {
 
   update() {
     this.controls.update();
+  }
+
+  moveToModel(strModelName, jumpDuration) {
+    const currentPosition = this.instance.position.clone();
+    const destination = MODELS[strModelName].camera.clone();
+    gsap
+      .to(this.instance.position, {
+        duration: jumpDuration,
+        x: `+= ${destination.x - currentPosition.x}`,
+        y: 0.5,
+        z: `+= ${destination.z - currentPosition.z}`,
+      })
+      .then(() => {
+        console.log('done');
+      });
   }
 }

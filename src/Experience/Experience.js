@@ -51,4 +51,8 @@ export default class Experience {
     this.world.update();
     this.renderer.update();
   }
+
+  switchModel(strModelName, jumpDuration) {
+    this.camera.moveToModel(strModelName, jumpDuration);
+  }
 }
