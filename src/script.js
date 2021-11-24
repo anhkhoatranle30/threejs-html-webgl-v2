@@ -1,7 +1,34 @@
 import './style.css';
 import Experience from './Experience/Experience';
+import MODELS from './Experience/Constants/modelAttributes';
 
+let currentObject = 0;
 const experience = new Experience(document.querySelector('canvas.webgl'));
+/**
+ * Next & Previous buttons
+ */
+const prevBtn = document.querySelector('#prev-btn');
+const nextBtn = document.querySelector('#next-btn');
+const triggerDisabledButton = () => {
+  // prevBtn
+  prevBtn.disabled = currentObject === 0;
+  // nextBtn
+  nextBtn.disabled = currentObject === Object.keys(MODELS).length - 1;
+};
+triggerDisabledButton();
+prevBtn.onclick = () => {
+  currentObject--;
+  console.log('prev, ', currentObject);
+  triggerDisabledButton();
+  // jumpToAnotherObject();
+};
+nextBtn.onclick = () => {
+  currentObject++;
+  console.log('next, ', currentObject);
+  triggerDisabledButton();
+  // jumpToAnotherObject();
+};
+
 // import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import * as dat from 'lil-gui';

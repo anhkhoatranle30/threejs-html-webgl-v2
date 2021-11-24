@@ -5,7 +5,7 @@ const textPositions = {
   left: 'left',
 };
 
-const POSITIONS = {
+const MODELS = {
   droneModel: {
     position: new THREE.Vector3(0, 0, 0.3),
     camera: new THREE.Vector3(0.65, 0.1, 0.5),
@@ -38,4 +38,4 @@ const POSITIONS = {
   },
 };
 
-export default POSITIONS;
+export default MODELS;
