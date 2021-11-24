@@ -17,10 +17,10 @@ const POSITIONS = {
     },
   },
   mazdaCar: {
-    position: new THREE.Vector3(-20, 0, 12),
-    camera: new THREE.Vector3(-22, 1, 15),
-    scale: 0.005,
-    rotation: Math.PI * 0.3,
+    position: new THREE.Vector3(-20, 4, 12),
+    camera: new THREE.Vector3(-16, 1.75, 23),
+    scale: 2,
+    rotation: 0,
     text: {
       position: textPositions.right,
       content: `2. The Dronebuster® is a compact, light-weight, cost-effective CUAS tool that can defeat COTS drone threats. The system readily converts from an integrated, fixed site jammer into a man-portable jammer for dismounted troops, security teams and first responders to use during fluid, ambiguous, fast-paced encounters.`,

@@ -21,7 +21,7 @@ export default class Camera {
       0.1,
       100
     );
-    this.instance.position.copy(POSITIONS.droneModel.camera);
+    this.instance.position.copy(POSITIONS.mazdaCar.camera);
     this.scene.add(this.instance);
   }
 

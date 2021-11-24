@@ -1,5 +1,6 @@
 import Experience from '../Experience';
 import BusterDrone from './BusterDrone';
+import MazdaCar from './MazdaCar';
 import Environment from './Environment';
 
 export default class World {
@@ -13,11 +14,13 @@ export default class World {
       // Setup
       // this.floor = new Floor();
       this.busterDrone = new BusterDrone();
+      this.mazdaCar = new MazdaCar();
       this.environment = new Environment();
     });
   }
 
   update() {
     if (this.busterDrone) this.busterDrone.update();
+    if (this.mazdaCar) this.mazdaCar.update();
   }
 }

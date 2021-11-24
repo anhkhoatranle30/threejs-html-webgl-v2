@@ -16,6 +16,11 @@ export default [
       'textures/environmentMap/nz.jpg',
     ],
   },
+  {
+    name: 'mazdaCar',
+    type: 'gltfModel',
+    path: 'models/mazda_car/scene.gltf',
+  },
 ];
 
 // export default [
