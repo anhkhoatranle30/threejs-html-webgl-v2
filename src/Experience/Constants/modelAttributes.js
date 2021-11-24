@@ -33,7 +33,7 @@ const POSITIONS = {
     rotation: 0,
     text: {
       position: textPositions.left,
-      content: `3. The Mazda RX-7 is a front/mid-engine, rear-wheel-drive, rotary engine-powered sports car that was manufactured and marketed by Mazda from 1978 to 2002 across three generations, all of which made use of a compact, lightweight Wankel rotary engine.`,
+      content: `3. This Heli Ball all is easy to operate and fly. It is assembled and ready to lift off! Amazing, exciting and advanced infrared control toy!`,
     },
   },
 };
