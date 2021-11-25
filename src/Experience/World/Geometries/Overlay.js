@@ -46,10 +46,13 @@ export default class Overlay {
   }
 
   fadeOut() {
-    gsap.to(this.material.uniforms.uAlpha, {
-      duration: 3,
-      value: 0,
-      delay: 1,
-    });
+    gsap
+      .to(this.material.uniforms.uAlpha, {
+        duration: 3,
+        value: 0,
+      })
+      .then(() => {
+        this.scene.remove(this.mesh);
+      });
   }
 }
