@@ -8,9 +8,12 @@ export const textPositions = {
 const MODELS = {
   mazdaCar: {
     position: new THREE.Vector3(-200, 3.5, 120),
-    camera: new THREE.Vector3(-202, 1.75, 132),
+    camera: {
+      position: new THREE.Vector3(-190, 1.75, 128),
+      lookAt: new THREE.Vector3(-190, 1.75, 120),
+    },
     scale: 2,
-    rotation: -Math.PI * 0.2,
+    rotation: Math.PI * 0.15,
     text: {
       position: textPositions.right,
       content: `1. The Mazda RX-7 is a front/mid-engine, rear-wheel-drive, rotary engine-powered sports car that was manufactured and marketed by Mazda from 1978 to 2002 across three generations, all of which made use of a compact, lightweight Wankel rotary engine.`,
@@ -18,7 +21,10 @@ const MODELS = {
   },
   droneModel: {
     position: new THREE.Vector3(0, 0, 0.3),
-    camera: new THREE.Vector3(0.65, 0.1, 0.5),
+    camera: {
+      position: new THREE.Vector3(0.65, 0.1, 0.5),
+      lookAt: new THREE.Vector3(0, 0, 0.3),
+    },
     scale: 0.005,
     rotation: Math.PI * 0.3,
     text: {
@@ -28,7 +34,10 @@ const MODELS = {
   },
   heliBall: {
     position: new THREE.Vector3(240, 1, -130),
-    camera: new THREE.Vector3(243, 1.25, -131),
+    camera: {
+      position: new THREE.Vector3(243, 1.25, -131),
+      lookAt: new THREE.Vector3(240, 1, -130),
+    },
     scale: 10,
     rotation: 0,
     text: {

@@ -10,6 +10,7 @@ export default class Camera {
     this.sizes = this.experience.sizes;
     this.scene = this.experience.scene;
     this.canvas = this.experience.canvas;
+    this.currentSelectedModel = MODELS[Object.keys(MODELS)[0]];
 
     this.setInstance();
     this.setControls();
@@ -22,7 +23,12 @@ export default class Camera {
       0.1,
       1000
     );
-    this.instance.position.copy(MODELS[Object.keys(MODELS)[0]].camera);
+    this.instance.position.copy(this.currentSelectedModel.camera.position);
+    this.instance.lookAt(this.currentSelectedModel.camera.lookAt);
+    console.log(
+      '🚀 ~ file: Camera.js ~ line 28 ~ Camera ~ setInstance ~ this.currentSelectedModel.camera.lookAt',
+      this.currentSelectedModel.camera.lookAt
+    );
     this.scene.add(this.instance);
   }
 
@@ -38,11 +44,15 @@ export default class Camera {
 
   update() {
     this.controls.update();
+    if (this.currentSelectedModel) {
+      this.instance.lookAt(this.currentSelectedModel.camera.lookAt);
+    }
   }
 
   moveToModel(strModelName, jumpDuration) {
+    this.currentSelectedModel = MODELS[strModelName];
     const currentPosition = this.instance.position.clone();
-    const destination = MODELS[strModelName].camera.clone();
+    const destination = MODELS[strModelName].camera.position.clone();
     gsap
       .to(this.instance.position, {
         duration: jumpDuration,
@@ -51,6 +61,7 @@ export default class Camera {
         z: `+= ${destination.z - currentPosition.z}`,
       })
       .then(() => {
+        console.log(this.instance.position);
         console.log('done');
       });
   }
