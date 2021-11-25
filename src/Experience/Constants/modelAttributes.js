@@ -35,8 +35,8 @@ const MODELS = {
   heliBall: {
     position: new THREE.Vector3(240, 1, -130),
     camera: {
-      position: new THREE.Vector3(243, 1.25, -131),
-      lookAt: new THREE.Vector3(240, 1, -130),
+      position: new THREE.Vector3(242.5, 1.25, -132.5),
+      lookAt: new THREE.Vector3(240, 1, -125),
     },
     scale: 10,
     rotation: 0,
