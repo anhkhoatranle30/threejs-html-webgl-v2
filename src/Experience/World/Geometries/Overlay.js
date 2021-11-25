@@ -47,12 +47,30 @@ export default class Overlay {
 
   fadeOut() {
     gsap
-      .to(this.material.uniforms.uAlpha, {
-        duration: 3,
-        value: 0,
+      .to(this.experience.camera.instance.position, {
+        duration: 0.25,
+        x: `+= 0.5`,
+        y: `+= 0.5`,
+        z: `+= 0.5`,
       })
       .then(() => {
-        this.scene.remove(this.mesh);
+        gsap
+          .to(this.experience.camera.instance.position, {
+            duration: 0.25,
+            x: `-= 0.5`,
+            y: `-= 0.5`,
+            z: `-= 0.5`,
+          })
+          .then(() => {
+            gsap
+              .to(this.material.uniforms.uAlpha, {
+                duration: 2,
+                value: 0,
+              })
+              .then(() => {
+                this.scene.remove(this.mesh);
+              });
+          });
       });
   }
 }
