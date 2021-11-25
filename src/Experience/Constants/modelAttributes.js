@@ -27,8 +27,8 @@ const MODELS = {
     },
   },
   heliBall: {
-    position: new THREE.Vector3(24, 1, 13),
-    camera: new THREE.Vector3(26, 1, 15),
+    position: new THREE.Vector3(240, 1, -130),
+    camera: new THREE.Vector3(243, 1.25, -131),
     scale: 10,
     rotation: 0,
     text: {
