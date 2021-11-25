@@ -25,10 +25,6 @@ export default class Camera {
     );
     this.instance.position.copy(this.currentSelectedModel.camera.position);
     this.instance.lookAt(this.currentSelectedModel.camera.lookAt);
-    console.log(
-      '🚀 ~ file: Camera.js ~ line 28 ~ Camera ~ setInstance ~ this.currentSelectedModel.camera.lookAt',
-      this.currentSelectedModel.camera.lookAt
-    );
     this.scene.add(this.instance);
   }
 
@@ -69,7 +65,7 @@ export default class Camera {
             z: `+= ${destination.z - currentPosition.z}`,
           })
           .then(() => {
-            console.log(this.instance.position);
+            // console.log(this.instance.position);
             console.log('done');
           });
       });
