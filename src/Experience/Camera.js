@@ -50,19 +50,28 @@ export default class Camera {
   }
 
   moveToModel(strModelName, jumpDuration) {
-    this.currentSelectedModel = MODELS[strModelName];
-    const currentPosition = this.instance.position.clone();
-    const destination = MODELS[strModelName].camera.position.clone();
     gsap
       .to(this.instance.position, {
-        duration: jumpDuration,
-        x: `+= ${destination.x - currentPosition.x}`,
-        y: `+= ${destination.y - currentPosition.y}`,
-        z: `+= ${destination.z - currentPosition.z}`,
+        duration: 0.5,
+        x: `+= ${Math.random()}`,
+        y: `+= 0`,
+        z: `+= ${Math.random()}`,
       })
       .then(() => {
-        console.log(this.instance.position);
-        console.log('done');
+        this.currentSelectedModel = MODELS[strModelName];
+        const currentPosition = this.instance.position.clone();
+        const destination = MODELS[strModelName].camera.position.clone();
+        gsap
+          .to(this.instance.position, {
+            duration: jumpDuration - 0.5,
+            x: `+= ${destination.x - currentPosition.x}`,
+            y: `+= ${destination.y - currentPosition.y}`,
+            z: `+= ${destination.z - currentPosition.z}`,
+          })
+          .then(() => {
+            console.log(this.instance.position);
+            console.log('done');
+          });
       });
   }
 }
