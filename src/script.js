@@ -10,6 +10,14 @@ const jumpDuration = 3;
 const experience = new Experience(document.querySelector('canvas.webgl'));
 
 /**
+ * Experience's resources progress event
+ */
+experience.resources.on('progress', () => {
+  const loadingRatio = Math.round(
+    (experience.resources.loaded * 100) / experience.resources.toLoad
+  );
+});
+/**
  * Sound effects
  */
 const wooshAudio = new Audio('/audio/whoosh.wav');

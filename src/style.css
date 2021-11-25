@@ -27,7 +27,8 @@ body {
 }
 
 .left,
-.right {
+.right,
+.center {
   display: flex;
   align-items: center;
   z-index: 2;
@@ -68,4 +69,10 @@ body {
   transition: all ease 0.5s;
 
   opacity: 0;
+}
+/* Loading */
+#loading-content {
+  margin-bottom: 100px;
+  font-size: 30px;
+  color: white;
 }
