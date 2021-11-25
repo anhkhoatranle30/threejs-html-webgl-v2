@@ -70,4 +70,18 @@ export default class Camera {
           });
       });
   }
+
+  moveByCursor(cursorCoordinates) {
+    const duration = 2;
+    const sourceCameraPosition = this.currentSelectedModel.camera.position;
+    gsap
+      .to(this.instance.position, {
+        duration,
+        x: sourceCameraPosition.x - cursorCoordinates.x,
+        y: sourceCameraPosition.y + cursorCoordinates.y,
+      })
+      .then(() => {
+        // console.log(camera.position);
+      });
+  }
 }

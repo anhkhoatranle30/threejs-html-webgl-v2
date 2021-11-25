@@ -7,6 +7,7 @@ import World from './World/World';
 import sources from './sources';
 import Resources from './Utils/Resources';
 import Debug from './Utils/Debug';
+import Parallax from './Utils/Parallax';
 
 let instance = null;
 
@@ -25,6 +26,7 @@ export default class Experience {
     this.debug = new Debug();
     this.sizes = new Sizes();
     this.time = new Time();
+    this.parallax = new Parallax();
     this.scene = new THREE.Scene();
     this.camera = new Camera();
     this.renderer = new Renderer();
@@ -39,6 +41,10 @@ export default class Experience {
     this.time.on('tick', () => {
       this.update();
     });
+    // Parallax mousemove event
+    this.parallax.on('mousemove', () => {
+      this.moveByCursor();
+    });
   }
 
   resize() {
@@ -50,6 +56,10 @@ export default class Experience {
     this.camera.update();
     this.world.update();
     this.renderer.update();
+  }
+
+  moveByCursor() {
+    this.camera.moveByCursor(this.parallax.cursor);
   }
 
   switchModel(strModelName, jumpDuration) {
