@@ -1,8 +1,8 @@
 import Experience from '../Experience';
-import BusterDrone from './BusterDrone';
-import MazdaCar from './MazdaCar';
 import Environment from './Environment';
-import HeliBall from './HeliBall';
+import BusterDrone from './Models/BusterDrone';
+import HeliBall from './Models/HeliBall';
+import MazdaCar from './Models/MazdaCar';
 
 export default class World {
   constructor() {

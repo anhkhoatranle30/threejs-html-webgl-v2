@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import Experience from '../Experience.js';
-import POSITIONS from '../Constants/modelAttributes.js';
+import Experience from '../../Experience.js';
+import POSITIONS from '../../Constants/modelAttributes.js';
 
 export default class HeliBall {
   constructor() {

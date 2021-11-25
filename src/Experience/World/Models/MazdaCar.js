@@ -1,14 +1,14 @@
 import * as THREE from 'three';
-import Experience from '../Experience.js';
-import POSITIONS from '../Constants/modelAttributes.js';
+import Experience from '../../Experience.js';
+import POSITIONS from '../../Constants/modelAttributes.js';
 
-export default class BusterDrone {
+export default class MazdaCar {
   constructor() {
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
     // Setup
-    this.resource = this.resources.items.droneModel;
+    this.resource = this.resources.items.mazdaCar;
     this.time = this.experience.time;
 
     this.setModel();
@@ -17,12 +17,12 @@ export default class BusterDrone {
 
   setModel() {
     this.model = this.resource.scene;
-    this.model.position.copy(POSITIONS.droneModel.position);
-    this.model.rotation.y += POSITIONS.droneModel.rotation;
+    this.model.position.copy(POSITIONS.mazdaCar.position);
+    this.model.rotation.y += POSITIONS.mazdaCar.rotation;
     this.model.scale.set(
-      POSITIONS.droneModel.scale,
-      POSITIONS.droneModel.scale,
-      POSITIONS.droneModel.scale
+      POSITIONS.mazdaCar.scale,
+      POSITIONS.mazdaCar.scale,
+      POSITIONS.mazdaCar.scale
     );
     this.scene.add(this.model);
 
