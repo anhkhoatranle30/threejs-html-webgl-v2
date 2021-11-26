@@ -21,7 +21,6 @@ const domTextElement = {
 // Forms
 const leftForm = document.querySelector('.left.form');
 const rightForm = document.querySelector('.right.form');
-const cameraDirectionForm = document.querySelector('#camera-direction-form');
 //#endregion
 
 //#region DOM elements functionalities
@@ -135,12 +134,10 @@ nextBtn.onclick = () => {
 const showAllForms = () => {
   leftForm.style.display = 'block';
   rightForm.style.display = 'block';
-  cameraDirectionForm.style.display = 'block';
 };
 const hideAllForms = () => {
   leftForm.style.display = 'none';
   rightForm.style.display = 'none';
-  cameraDirectionForm.style.display = 'none';
 };
 //#endregion
 //#endregion
