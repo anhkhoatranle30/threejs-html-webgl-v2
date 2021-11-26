@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import MODELS from './Constants/modelAttributes.js';
 import Experience from './Experience.js';
+import Calculator from './Utils/Calculator.js';
 
 export default class Camera {
   constructor() {
@@ -74,11 +75,21 @@ export default class Camera {
   moveByCursor(cursorCoordinates) {
     const duration = 2;
     const sourceCameraPosition = this.currentSelectedModel.camera.position;
+    const distanceFactor = 1.002;
+    const distanceToCenter = Calculator.CalcDistanceTwoPoints({
+      source: sourceCameraPosition,
+      destination: new THREE.Vector3(),
+      isEnalbled: { x: true, z: true },
+    });
     gsap
       .to(this.instance.position, {
         duration,
-        x: sourceCameraPosition.x - cursorCoordinates.x,
-        y: sourceCameraPosition.y + cursorCoordinates.y,
+        x:
+          sourceCameraPosition.x -
+          cursorCoordinates.x * Math.pow(distanceFactor, distanceToCenter),
+        y:
+          sourceCameraPosition.y +
+          cursorCoordinates.y * Math.pow(distanceFactor, distanceToCenter),
       })
       .then(() => {
         // console.log(camera.position);
