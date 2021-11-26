@@ -10,6 +10,7 @@ export default class Environment {
     // Setup
     this.setSunLight();
     this.setEnvironmentMap();
+    this.setFog();
     // this.setCoordinatesHelpers();
   }
 
@@ -57,5 +58,10 @@ export default class Environment {
     gridHelper.position.y -= 0.5;
     const axesHelper = new THREE.AxesHelper(200);
     this.experience.scene.add(gridHelper);
+  }
+
+  setFog() {
+    this.fog = new THREE.Fog('#262837', 1, 15);
+    this.scene.fog = this.fog;
   }
 }
