@@ -16,6 +16,10 @@ experience.resources.on('progress', () => {
   const loadingRatio = Math.round(
     (experience.resources.loaded * 100) / experience.resources.toLoad
   );
+  console.log(
+    '🚀 ~ file: script.js ~ line 19 ~ experience.resources.on ~ loadingRatio',
+    loadingRatio
+  );
 });
 /**
  * Sound effects

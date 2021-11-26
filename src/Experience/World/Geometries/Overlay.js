@@ -48,7 +48,7 @@ export default class Overlay {
   fadeOut() {
     gsap
       .to(this.experience.camera.instance.position, {
-        duration: 0.25,
+        duration: 0.5,
         x: `+= 0.5`,
         y: `+= 0.5`,
         z: `+= 0.5`,
@@ -56,7 +56,7 @@ export default class Overlay {
       .then(() => {
         gsap
           .to(this.experience.camera.instance.position, {
-            duration: 0.25,
+            duration: 0.5,
             x: `-= 0.5`,
             y: `-= 0.5`,
             z: `-= 0.5`,
