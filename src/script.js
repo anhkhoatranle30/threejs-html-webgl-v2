@@ -47,10 +47,14 @@ const fillTextContent = () => {
 /**
  * Next & Previous buttons
  */
-
-const triggerDisabledButton = () => {
+const showAllButtons = () => {
   prevBtn.style.display = 'inline-block';
   nextBtn.style.display = 'inline-block';
+  enterModelButton.style.display = 'inline-block';
+};
+
+const triggerDisabledButton = () => {
+  showAllButtons();
   // prevBtn
   prevBtn.disabled = currentObject === 0;
   // nextBtn
@@ -60,6 +64,7 @@ const triggerDisabledButton = () => {
 const hideAllButton = () => {
   prevBtn.style.display = 'none';
   nextBtn.style.display = 'none';
+  enterModelButton.style.display = 'none';
 };
 
 const switchModel = () => {
@@ -119,8 +124,7 @@ experience.resources.on('progress', () => {
  * When all resouces are ready
  */
 experience.resources.on('ready', () => {
-  prevBtn.style.display = 'inline-block';
-  nextBtn.style.display = 'inline-block';
+  showAllButtons();
 
   fillTextContent();
 });
