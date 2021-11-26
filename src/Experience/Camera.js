@@ -60,10 +60,6 @@ export default class Camera {
         const currentPosition = this.instance.position.clone();
         const destination = MODELS[strModelName].camera.position.clone();
         this.target = MODELS[strModelName].camera.lookAt.clone();
-        console.log(
-          '🚀 ~ file: Camera.js ~ line 63 ~ Camera ~ .then ~ MODELS[strModelName].camera.lookAt',
-          MODELS[strModelName].camera.lookAt
-        );
         gsap
           .to(this.instance.position, {
             duration: jumpDuration - 0.5,
@@ -73,7 +69,7 @@ export default class Camera {
           })
           .then(() => {
             // console.log(this.instance.position);
-            console.log('done');
+            // console.log('done');
           });
       });
   }
