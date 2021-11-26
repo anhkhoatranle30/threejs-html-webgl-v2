@@ -81,13 +81,17 @@ body {
 }
 /* Enter button */
 #enter-model-btn {
-  align-self: flex-end;
-  padding: 2px;
-  margin: 2px;
-  border: none;
-  background: transparent;
-  color: yellow;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  background: black;
+  padding: 5px;
   font-size: 20px;
+  color: yellow;
+  border: solid 1px black;
+  border-radius: 4px;
+  margin: 5px;
 }
 #enter-model-btn:hover {
   cursor: pointer;

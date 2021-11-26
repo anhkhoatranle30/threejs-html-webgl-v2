@@ -9,7 +9,20 @@ import gsap from 'gsap';
 let currentObject = 0;
 const jumpDuration = 3;
 const experience = new Experience(document.querySelector('canvas.webgl'));
-const enterModelButton = `<button id="enter-model-btn">Enter</button>`;
+
+const prevBtn = document.querySelector('#prev-btn');
+const nextBtn = document.querySelector('#next-btn');
+const domTextElement = {
+  [`${textPositions.left}`]: document.querySelector('.left.text'),
+  [`${textPositions.right}`]: document.querySelector('.right.text'),
+};
+const enterModelButton = document.querySelector('#enter-model-btn');
+/**
+ * Enter button
+ */
+enterModelButton.addEventListener('click', () => {
+  console.log('hi');
+});
 /**
  * Sound effects
  */
@@ -17,11 +30,6 @@ const wooshAudio = new Audio('/audio/whoosh.wav');
 /**
  * Text
  */
-const domTextElement = {
-  [`${textPositions.left}`]: document.querySelector('.left.text'),
-  [`${textPositions.right}`]: document.querySelector('.right.text'),
-};
-
 const hideAllTextDomElement = () => {
   for (const key in domTextElement) {
     domTextElement[key].style.opacity = 0;
@@ -34,13 +42,11 @@ const fillTextContent = () => {
 
   const currentElement = domTextElement[currentTextPosition];
   currentElement.style.opacity = 1;
-  currentElement.innerHTML = currentTextContent + enterModelButton;
+  currentElement.innerHTML = currentTextContent;
 };
 /**
  * Next & Previous buttons
  */
-const prevBtn = document.querySelector('#prev-btn');
-const nextBtn = document.querySelector('#next-btn');
 
 const triggerDisabledButton = () => {
   prevBtn.style.display = 'inline-block';
