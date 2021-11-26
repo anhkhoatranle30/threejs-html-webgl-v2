@@ -6,14 +6,14 @@ export const textPositions = {
 };
 
 const MODELS = {
-  mazdaCar: {
-    position: new THREE.Vector3(-200, 3.5, 120),
+  shiba: {
+    position: new THREE.Vector3(-192.5, 2.5, 125),
     camera: {
-      position: new THREE.Vector3(-190, 1.75, 128),
+      position: new THREE.Vector3(-190, 3, 128),
       lookAt: new THREE.Vector3(-190, 1.75, 120),
     },
-    scale: 2,
-    rotation: Math.PI * 0.15,
+    scale: 3,
+    rotation: Math.PI * 0.2,
     text: {
       position: textPositions.right,
       content: `1. The Mazda RX-7 is a front/mid-engine, rear-wheel-drive, rotary engine-powered sports car that was manufactured and marketed by Mazda from 1978 to 2002 across three generations, all of which made use of a compact, lightweight Wankel rotary engine.`,

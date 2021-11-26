@@ -1,11 +1,10 @@
 import Experience from '../Experience';
 import Environment from './Environment';
-import Floor from './Geometries/Floor';
 import Overlay from './Geometries/Overlay';
 import Water from './Geometries/Water';
 import BusterDrone from './Models/BusterDrone';
 import HeliBall from './Models/HeliBall';
-import MazdaCar from './Models/MazdaCar';
+import Shiba from './Models/Shiba';
 
 export default class World {
   constructor() {
@@ -19,8 +18,8 @@ export default class World {
       // Setup
       // this.floor = new Floor();
       this.floor = new Water();
+      this.shiba = new Shiba();
       this.busterDrone = new BusterDrone();
-      this.mazdaCar = new MazdaCar();
       this.heliBall = new HeliBall();
       this.environment = new Environment();
       this.overlay.fadeOut();

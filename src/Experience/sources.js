@@ -17,9 +17,9 @@ export default [
     ],
   },
   {
-    name: 'mazdaCar',
+    name: 'shiba',
     type: 'gltfModel',
-    path: 'models/mazda_car/scene.gltf',
+    path: 'models/shiba/scene.gltf',
   },
   {
     name: 'heliBall',
