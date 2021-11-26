@@ -1,5 +1,6 @@
 import Experience from '../Experience';
 import Environment from './Environment';
+import Floor from './Geometries/Floor';
 import Overlay from './Geometries/Overlay';
 import BusterDrone from './Models/BusterDrone';
 import HeliBall from './Models/HeliBall';
@@ -16,6 +17,7 @@ export default class World {
     this.resources.on('ready', () => {
       // Setup
       // this.floor = new Floor();
+      this.floor = new Floor();
       this.busterDrone = new BusterDrone();
       this.mazdaCar = new MazdaCar();
       this.heliBall = new HeliBall();
