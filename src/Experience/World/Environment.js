@@ -10,7 +10,7 @@ export default class Environment {
     // Setup
     this.setSunLight();
     this.setEnvironmentMap();
-    this.setCoordinatesHelpers();
+    // this.setCoordinatesHelpers();
   }
 
   setSunLight() {

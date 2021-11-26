@@ -16,17 +16,21 @@ export default class Floor {
   }
 
   setGeometry() {
-    this.geometry = new THREE.PlaneBufferGeometry(1000, 1000, 256, 256);
+    this.geometry = new THREE.PlaneBufferGeometry(500, 500, 1024, 1024);
   }
 
   setMaterial() {
     this.material = new THREE.ShaderMaterial({
       transparent: true,
       uniforms: {
-        uAlpha: { value: 1 },
+        uBigWavesElevation: { value: 0.1 },
+        uBigWavesFrequency: { value: new THREE.Vector2(2, 2.5) },
+        uThickness: { value: 0.005 },
+        uDensity: { value: 300.0 },
       },
       vertexShader,
       fragmentShader,
+      side: THREE.DoubleSide,
     });
   }
 
