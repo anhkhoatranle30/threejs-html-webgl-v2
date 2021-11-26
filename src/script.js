@@ -21,7 +21,7 @@ const enterModelButton = document.querySelector('#enter-model-btn');
  * Enter button
  */
 enterModelButton.addEventListener('click', () => {
-  console.log('hi');
+  experience.camera.focusCurrentModel();
 });
 /**
  * Sound effects

@@ -12,6 +12,7 @@ export default class Camera {
     this.scene = this.experience.scene;
     this.canvas = this.experience.canvas;
     this.currentSelectedModel = MODELS[Object.keys(MODELS)[0]];
+    this.target = this.currentSelectedModel.camera.lookAt;
 
     this.setInstance();
     // this.setControls();
@@ -42,7 +43,7 @@ export default class Camera {
   update() {
     // this.controls.update();
     if (this.currentSelectedModel) {
-      this.instance.lookAt(this.currentSelectedModel.camera.lookAt);
+      this.instance.lookAt(this.target);
     }
   }
 
@@ -58,6 +59,7 @@ export default class Camera {
         this.currentSelectedModel = MODELS[strModelName];
         const currentPosition = this.instance.position.clone();
         const destination = MODELS[strModelName].camera.position.clone();
+        this.target = MODELS[strModelName].camera.lookAt;
         gsap
           .to(this.instance.position, {
             duration: jumpDuration - 0.5,
@@ -90,5 +92,9 @@ export default class Camera {
       .then(() => {
         // console.log(camera.position);
       });
+  }
+
+  focusCurrentModel() {
+    this.target = this.currentSelectedModel.position;
   }
 }
