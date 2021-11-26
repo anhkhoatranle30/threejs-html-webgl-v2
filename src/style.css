@@ -96,3 +96,17 @@ body {
 #enter-model-btn:hover {
   cursor: pointer;
 }
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  display: none;
+}
+#camera-direction-form {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  display: none;
+}

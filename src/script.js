@@ -9,19 +9,25 @@ import gsap from 'gsap';
 let currentObject = 0;
 const jumpDuration = 3;
 const experience = new Experience(document.querySelector('canvas.webgl'));
-
+// Buttons
 const prevBtn = document.querySelector('#prev-btn');
 const nextBtn = document.querySelector('#next-btn');
+const enterModelButton = document.querySelector('#enter-model-btn');
+// Text
 const domTextElement = {
   [`${textPositions.left}`]: document.querySelector('.left.text'),
   [`${textPositions.right}`]: document.querySelector('.right.text'),
 };
-const enterModelButton = document.querySelector('#enter-model-btn');
+// Forms
+const leftForm = document.querySelector('.left.form');
+const rightForm = document.querySelector('.right.form');
+const cameraDirectionForm = document.querySelector('#camera-direction-form');
 /**
  * Enter button
  */
 enterModelButton.addEventListener('click', () => {
   experience.camera.focusCurrentModel();
+  showAllForms();
 });
 /**
  * Sound effects
@@ -98,7 +104,19 @@ nextBtn.onclick = () => {
   currentObject++;
   onSwitchModelButtonClick();
 };
-
+/**
+ * Forms
+ */
+const showAllForms = () => {
+  leftForm.style.display = 'block';
+  rightForm.style.display = 'block';
+  cameraDirectionForm.style.display = 'block';
+};
+const hideAllForms = () => {
+  leftForm.style.display = 'none';
+  rightForm.style.display = 'none';
+  cameraDirectionForm.style.display = 'none';
+};
 /**
  * When screen starts
  */
