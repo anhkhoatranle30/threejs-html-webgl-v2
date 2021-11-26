@@ -2,6 +2,7 @@ import Experience from '../Experience';
 import Environment from './Environment';
 import Floor from './Geometries/Floor';
 import Overlay from './Geometries/Overlay';
+import Water from './Geometries/Water';
 import BusterDrone from './Models/BusterDrone';
 import HeliBall from './Models/HeliBall';
 import MazdaCar from './Models/MazdaCar';
@@ -17,7 +18,7 @@ export default class World {
     this.resources.on('ready', () => {
       // Setup
       // this.floor = new Floor();
-      this.floor = new Floor();
+      this.floor = new Water();
       this.busterDrone = new BusterDrone();
       this.mazdaCar = new MazdaCar();
       this.heliBall = new HeliBall();
@@ -30,5 +31,6 @@ export default class World {
     if (this.busterDrone) this.busterDrone.update();
     if (this.mazdaCar) this.mazdaCar.update();
     if (this.heliBall) this.heliBall.update();
+    if (this.floor) this.floor.update();
   }
 }
