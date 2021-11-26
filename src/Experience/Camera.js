@@ -107,4 +107,13 @@ export default class Camera {
       z: this.currentSelectedModel.position.z,
     });
   }
+
+  loseFocusCurrentModel() {
+    gsap.to(this.target, {
+      duration: 0.5,
+      x: this.currentSelectedModel.camera.lookAt.x,
+      y: this.currentSelectedModel.camera.lookAt.y,
+      z: this.currentSelectedModel.camera.lookAt.z,
+    });
+  }
 }

@@ -26,8 +26,36 @@ const cameraDirectionForm = document.querySelector('#camera-direction-form');
  * Enter button
  */
 enterModelButton.addEventListener('click', () => {
-  experience.camera.focusCurrentModel();
-  showAllForms();
+  const currentButtonContent = enterModelButton.innerHTML;
+  const possibleContent = {
+    enter: 'Enter',
+    exit: 'Exit',
+  };
+
+  if (currentButtonContent === possibleContent.enter) {
+    // Camera
+    experience.camera.focusCurrentModel();
+    // Forms
+    showAllForms();
+    // Text
+    hideAllTextDomElement();
+    // Buttons
+    hideAllButtons();
+    // Enter model button
+    enterModelButton.style.display = 'inline-block';
+    enterModelButton.innerHTML = possibleContent.exit;
+  } else {
+    // Camera
+    experience.camera.loseFocusCurrentModel();
+    // Forms
+    hideAllForms();
+    // Text
+    fillTextContent();
+    // Buttons
+    showAllButtons();
+    // Enter model button
+    enterModelButton.innerHTML = possibleContent.enter;
+  }
 });
 /**
  * Sound effects
@@ -67,7 +95,7 @@ const triggerDisabledButton = () => {
   nextBtn.disabled = currentObject === Object.keys(MODELS).length - 1;
 };
 
-const hideAllButton = () => {
+const hideAllButtons = () => {
   prevBtn.style.display = 'none';
   nextBtn.style.display = 'none';
   enterModelButton.style.display = 'none';
@@ -84,7 +112,7 @@ const onSwitchModelButtonClick = () => {
   // Text
   hideAllTextDomElement();
   // Buttons
-  hideAllButton();
+  hideAllButtons();
   // Experience
   switchModel();
   // After the switch has completed
@@ -120,7 +148,7 @@ const hideAllForms = () => {
 /**
  * When screen starts
  */
-hideAllButton();
+hideAllButtons();
 prevBtn.disabled = true;
 hideAllTextDomElement();
 /**
