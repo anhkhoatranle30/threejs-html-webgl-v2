@@ -4,6 +4,7 @@ import MODELS, {
   textPositions,
   modelNames,
 } from './Experience/Constants/modelAttributes';
+import gsap from 'gsap';
 
 let currentObject = 0;
 const jumpDuration = 3;
@@ -12,14 +13,12 @@ const experience = new Experience(document.querySelector('canvas.webgl'));
 /**
  * Experience's resources progress event
  */
+const loadingContentElement = document.querySelector('#loading-content');
 experience.resources.on('progress', () => {
   const loadingRatio = Math.round(
     (experience.resources.loaded * 100) / experience.resources.toLoad
   );
-  console.log(
-    '🚀 ~ file: script.js ~ line 19 ~ experience.resources.on ~ loadingRatio',
-    loadingRatio
-  );
+  loadingContentElement.innerHTML = loadingRatio + '%';
 });
 /**
  * Sound effects
