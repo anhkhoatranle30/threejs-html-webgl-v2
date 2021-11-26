@@ -11,16 +11,6 @@ const jumpDuration = 3;
 const experience = new Experience(document.querySelector('canvas.webgl'));
 
 /**
- * Experience's resources progress event
- */
-const loadingContentElement = document.querySelector('#loading-content');
-experience.resources.on('progress', () => {
-  const loadingRatio = Math.round(
-    (experience.resources.loaded * 100) / experience.resources.toLoad
-  );
-  loadingContentElement.innerHTML = loadingRatio + '%';
-});
-/**
  * Sound effects
  */
 const wooshAudio = new Audio('/audio/whoosh.wav');
@@ -46,7 +36,6 @@ const fillTextContent = () => {
   currentElement.style.opacity = 1;
   currentElement.innerHTML = currentTextContent;
 };
-fillTextContent();
 /**
  * Next & Previous buttons
  */
@@ -61,7 +50,6 @@ const triggerDisabledButton = () => {
   // nextBtn
   nextBtn.disabled = currentObject === Object.keys(MODELS).length - 1;
 };
-triggerDisabledButton();
 
 const hideAllButton = () => {
   prevBtn.style.display = 'none';
@@ -99,6 +87,37 @@ nextBtn.onclick = () => {
   currentObject++;
   onSwitchModelButtonClick();
 };
+
+/**
+ * When screen starts
+ */
+hideAllButton();
+prevBtn.disabled = true;
+hideAllTextDomElement();
+/**
+ * Experience's resources progress event
+ */
+const loadingContentElement = document.querySelector('#loading-content');
+experience.resources.on('progress', () => {
+  const loadingRatio = Math.round(
+    (experience.resources.loaded * 100) / experience.resources.toLoad
+  );
+  loadingContentElement.innerHTML = loadingRatio + '%';
+  if (loadingRatio === 100) {
+    setTimeout(() => {
+      loadingContentElement.style.display = 'none';
+    }, 1000);
+  }
+});
+/**
+ * When all resouces are ready
+ */
+experience.resources.on('ready', () => {
+  prevBtn.style.display = 'inline-block';
+  nextBtn.style.display = 'inline-block';
+
+  fillTextContent();
+});
 
 // import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
