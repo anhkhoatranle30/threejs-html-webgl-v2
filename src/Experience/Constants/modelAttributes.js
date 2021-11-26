@@ -20,12 +20,12 @@ const MODELS = {
     },
   },
   droneModel: {
-    position: new THREE.Vector3(0, 0, 0.3),
+    position: new THREE.Vector3(0, 0.3, 0.3),
     camera: {
       position: new THREE.Vector3(1, 0.01, 0.95),
       lookAt: new THREE.Vector3(0, 0.05, 0),
     },
-    scale: 0.005,
+    scale: 0.0075,
     rotation: Math.PI * 0.3,
     text: {
       position: textPositions.right,

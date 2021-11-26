@@ -14,7 +14,7 @@ export default class Camera {
     this.currentSelectedModel = MODELS[Object.keys(MODELS)[0]];
 
     this.setInstance();
-    // this.setControls();
+    this.setControls();
   }
 
   setInstance() {
@@ -29,10 +29,10 @@ export default class Camera {
     this.scene.add(this.instance);
   }
 
-  // setControls() {
-  //   this.controls = new OrbitControls(this.instance, this.canvas);
-  //   this.controls.enableDamping = true;
-  // }
+  setControls() {
+    this.controls = new OrbitControls(this.instance, this.canvas);
+    this.controls.enableDamping = true;
+  }
 
   resize() {
     this.instance.aspect = this.sizes.width / this.sizes.height;
@@ -40,7 +40,7 @@ export default class Camera {
   }
 
   update() {
-    // this.controls.update();
+    this.controls.update();
     if (this.currentSelectedModel) {
       this.instance.lookAt(this.currentSelectedModel.camera.lookAt);
     }
