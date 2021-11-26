@@ -9,7 +9,7 @@ import gsap from 'gsap';
 let currentObject = 0;
 const jumpDuration = 3;
 const experience = new Experience(document.querySelector('canvas.webgl'));
-
+const enterModelButton = `<button id="enter-model-btn">Enter</button>`;
 /**
  * Sound effects
  */
@@ -34,7 +34,7 @@ const fillTextContent = () => {
 
   const currentElement = domTextElement[currentTextPosition];
   currentElement.style.opacity = 1;
-  currentElement.innerHTML = currentTextContent;
+  currentElement.innerHTML = currentTextContent + enterModelButton;
 };
 /**
  * Next & Previous buttons

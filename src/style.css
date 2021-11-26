@@ -69,10 +69,26 @@ body {
   transition: all ease 0.5s;
 
   opacity: 0;
+
+  display: flex;
+  flex-direction: column;
 }
 /* Loading */
 #loading-content {
   margin-bottom: 100px;
   font-size: 30px;
   color: white;
+}
+/* Enter button */
+#enter-model-btn {
+  align-self: flex-end;
+  padding: 2px;
+  margin: 2px;
+  border: none;
+  background: transparent;
+  color: yellow;
+  font-size: 20px;
+}
+#enter-model-btn:hover {
+  cursor: pointer;
 }
