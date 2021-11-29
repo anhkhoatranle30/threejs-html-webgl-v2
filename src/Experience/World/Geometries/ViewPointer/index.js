@@ -4,11 +4,12 @@ import vertexShader from './vertex.glsl';
 import fragmentShader from './fragment.glsl';
 import Experience from '../../../Experience';
 import ViewPointerEdges from './Edges';
+import ToggleMouse from '../../../Utils/ToggleMouse';
 
 const POINTER_STYLE = {
-  SIZE: 100,
-  MARGIN: 50,
-  POSITION: new THREE.Vector3(0.5, 0.5, 0),
+  SIZE: 30,
+  MARGIN: 25,
+  POSITION: new THREE.Vector3(0, 0, 0),
 };
 
 export default class ViewPointer {
@@ -16,17 +17,75 @@ export default class ViewPointer {
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
+    this.toggleMouse = new ToggleMouse();
 
     // Setup
     this.setGeometry();
     this.setMaterial();
     this.setMesh();
+    // ToggleMouse mousedown & mouseup event
+    this.toggleMouse.on('mousedown', () => {
+      POINTER_STYLE.POSITION = new THREE.Vector3(
+        -this.toggleMouse.cursor.x,
+        -this.toggleMouse.cursor.y,
+        0
+      );
+      // Update positions
+      this.material.uniforms.uOffset.value = POINTER_STYLE.POSITION;
+      this.leftEdge.material.uniforms.uOffset.value =
+        this.calculateEdgeOffsetVector({ position: 'left' });
+      this.rightEdge.material.uniforms.uOffset.value =
+        this.calculateEdgeOffsetVector({ position: 'right' });
+      this.topEdge.material.uniforms.uOffset.value =
+        this.calculateEdgeOffsetVector({ position: 'top' });
+      this.bottomEdge.material.uniforms.uOffset.value =
+        this.calculateEdgeOffsetVector({ position: 'bottom' });
+    });
+  }
+
+  calculateEdgeOffsetVector({ position = 'bototm' }) {
+    switch (position) {
+      case 'left': {
+        return new THREE.Vector3(
+          POINTER_STYLE.POSITION.x -
+            (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN * 2) / window.innerWidth,
+          POINTER_STYLE.POSITION.y,
+          0
+        );
+      }
+      case 'right': {
+        return new THREE.Vector3(
+          POINTER_STYLE.POSITION.x +
+            (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN * 2) / window.innerWidth,
+          POINTER_STYLE.POSITION.y,
+          0
+        );
+      }
+      case 'top': {
+        return new THREE.Vector3(
+          POINTER_STYLE.POSITION.x,
+          (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN * 2) / window.innerHeight +
+            POINTER_STYLE.POSITION.y,
+          0
+        );
+      }
+      default: {
+        //bottom
+        return new THREE.Vector3(
+          POINTER_STYLE.POSITION.x,
+          -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN * 2) /
+            window.innerHeight +
+            POINTER_STYLE.POSITION.y,
+          0
+        );
+      }
+    }
   }
 
   setGeometry() {
     this.geometry = new THREE.PlaneBufferGeometry(
-      POINTER_STYLE.SIZE / window.innerWidth,
-      POINTER_STYLE.SIZE / window.innerHeight,
+      (POINTER_STYLE.SIZE * 2) / window.innerWidth,
+      (POINTER_STYLE.SIZE * 2) / window.innerHeight,
       1,
       1
     );
@@ -51,45 +110,25 @@ export default class ViewPointer {
       type: 'vertical',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
-      offset: new THREE.Vector3(
-        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth +
-          POINTER_STYLE.POSITION.x,
-        POINTER_STYLE.POSITION.y,
-        0
-      ),
+      offset: this.calculateEdgeOffsetVector({ position: 'left' }),
     });
     this.rightEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
-      offset: new THREE.Vector3(
-        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth +
-          POINTER_STYLE.POSITION.x,
-        POINTER_STYLE.POSITION.y,
-        0
-      ),
+      offset: this.calculateEdgeOffsetVector({ position: 'right' }),
     });
     this.topEdge = new ViewPointerEdges({
       type: 'horizonal',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
-      offset: new THREE.Vector3(
-        POINTER_STYLE.POSITION.x,
-        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight +
-          POINTER_STYLE.POSITION.y,
-        0
-      ),
+      offset: this.calculateEdgeOffsetVector({ position: 'top' }),
     });
     this.bottomEdge = new ViewPointerEdges({
       type: 'horizonal',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
-      offset: new THREE.Vector3(
-        POINTER_STYLE.POSITION.x,
-        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight +
-          POINTER_STYLE.POSITION.y,
-        0
-      ),
+      offset: this.calculateEdgeOffsetVector({ position: 'bottom' }),
     });
     this.edges = [this.leftEdge, this.rightEdge, this.topEdge, this.bottomEdge];
 
