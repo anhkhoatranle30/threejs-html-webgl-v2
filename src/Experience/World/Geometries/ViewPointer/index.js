@@ -169,4 +169,12 @@ export default class ViewPointer {
     this.mesh.lookAt(this.experience.camera);
     this.edges.forEach((edge) => edge.update());
   }
+
+  activate() {
+    this.isActivated = true;
+  }
+
+  deactivate() {
+    this.isActivated = false;
+  }
 }
