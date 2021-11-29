@@ -45,7 +45,7 @@ export default class ViewPointer {
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
 
-    const leftEdge = new ViewPointerEdges({
+    this.leftEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
@@ -55,7 +55,7 @@ export default class ViewPointer {
         0
       ),
     });
-    const rightEdge = new ViewPointerEdges({
+    this.rightEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
@@ -65,7 +65,7 @@ export default class ViewPointer {
         0
       ),
     });
-    const topEdge = new ViewPointerEdges({
+    this.topEdge = new ViewPointerEdges({
       type: 'horizonal',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
@@ -75,7 +75,7 @@ export default class ViewPointer {
         0
       ),
     });
-    const bottomEdge = new ViewPointerEdges({
+    this.bottomEdge = new ViewPointerEdges({
       type: 'horizonal',
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
@@ -85,7 +85,7 @@ export default class ViewPointer {
         0
       ),
     });
-    this.edges = [leftEdge, rightEdge, topEdge, bottomEdge];
+    this.edges = [this.leftEdge, this.rightEdge, this.topEdge, this.bottomEdge];
 
     this.scene.add(this.mesh);
   }
