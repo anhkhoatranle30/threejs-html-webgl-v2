@@ -29,11 +29,11 @@ export default class ViewPointerEdges {
   setGeometry() {
     const width =
       this.type === 'vertical'
-        ? this.thickness / window.innerWidth
+        ? (this.thickness * 2 * 2) / window.innerWidth
         : this.depth;
     const height =
       this.type === 'horizonal'
-        ? this.thickness / window.innerHeight
+        ? (this.thickness * 2 * 2) / window.innerHeight
         : this.depth;
     this.geometry = new THREE.PlaneBufferGeometry(width, height, 1, 1);
   }
