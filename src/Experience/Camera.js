@@ -7,6 +7,8 @@ import Calculator from './Utils/Calculator.js';
 
 export default class Camera {
   constructor() {
+    this.isControlEnabled = true;
+
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
     this.scene = this.experience.scene;
@@ -75,23 +77,25 @@ export default class Camera {
   }
 
   moveByCursor(cursorCoordinates) {
-    const duration = 2;
-    const sourceCameraPosition = this.currentSelectedModel.camera.position;
-    const distanceToCenter = Calculator.CalcDistanceTwoPoints({
-      source: sourceCameraPosition,
-      destination: new THREE.Vector3(),
-      isEnalbled: { x: true, z: true },
-    });
-    const distanceFactor = distanceToCenter / 233;
-    gsap
-      .to(this.instance.position, {
-        duration,
-        x: sourceCameraPosition.x - cursorCoordinates.x * distanceFactor,
-        y: sourceCameraPosition.y + cursorCoordinates.y * distanceFactor,
-      })
-      .then(() => {
-        // console.log(camera.position);
+    if (this.isControlEnabled) {
+      const duration = 2;
+      const sourceCameraPosition = this.currentSelectedModel.camera.position;
+      const distanceToCenter = Calculator.CalcDistanceTwoPoints({
+        source: sourceCameraPosition,
+        destination: new THREE.Vector3(),
+        isEnalbled: { x: true, z: true },
       });
+      const distanceFactor = distanceToCenter / 233;
+      gsap
+        .to(this.instance.position, {
+          duration,
+          x: sourceCameraPosition.x - cursorCoordinates.x * distanceFactor,
+          y: sourceCameraPosition.y + cursorCoordinates.y * distanceFactor,
+        })
+        .then(() => {
+          // console.log(camera.position);
+        });
+    }
   }
 
   focusCurrentModel() {
