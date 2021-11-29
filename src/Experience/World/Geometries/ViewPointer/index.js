@@ -8,6 +8,7 @@ import ViewPointerEdges from './Edges';
 const POINTER_STYLE = {
   SIZE: 100,
   MARGIN: 50,
+  POSITION: new THREE.Vector3(0.5, 0.5, 0),
 };
 
 export default class ViewPointer {
@@ -36,6 +37,7 @@ export default class ViewPointer {
       transparent: true,
       uniforms: {
         uAlpha: { value: 1.0 },
+        uOffset: { value: POINTER_STYLE.POSITION },
       },
       vertexShader,
       fragmentShader,
@@ -50,8 +52,9 @@ export default class ViewPointer {
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
       offset: new THREE.Vector3(
-        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
-        0,
+        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth +
+          POINTER_STYLE.POSITION.x,
+        POINTER_STYLE.POSITION.y,
         0
       ),
     });
@@ -60,8 +63,9 @@ export default class ViewPointer {
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
       offset: new THREE.Vector3(
-        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
-        0,
+        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth +
+          POINTER_STYLE.POSITION.x,
+        POINTER_STYLE.POSITION.y,
         0
       ),
     });
@@ -70,8 +74,9 @@ export default class ViewPointer {
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
       offset: new THREE.Vector3(
-        0,
-        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
+        POINTER_STYLE.POSITION.x,
+        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight +
+          POINTER_STYLE.POSITION.y,
         0
       ),
     });
@@ -80,8 +85,9 @@ export default class ViewPointer {
       thickness: 5,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
       offset: new THREE.Vector3(
-        0,
-        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
+        POINTER_STYLE.POSITION.x,
+        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight +
+          POINTER_STYLE.POSITION.y,
         0
       ),
     });
@@ -93,6 +99,17 @@ export default class ViewPointer {
   update() {
     this.mesh.lookAt(this.experience.camera);
     this.edges.forEach((edge) => edge.update());
+  }
+
+  fadeIn() {
+    gsap
+      .to(this.material.uniforms.uAlpha, {
+        duration: 0.5,
+        value: 1.0,
+      })
+      .then(() => {
+        this.scene.remove(this.mesh);
+      });
   }
 
   fadeOut() {
