@@ -6,13 +6,13 @@ import Experience from '../../../../Experience';
 
 export default class ViewPointerEdges {
   constructor({
-    type,
-    normalizedPosition = new THREE.Vector3(0, 0, 0),
+    type = 'vertical',
+    offset = new THREE.Vector3(0, 0, 0),
     thickness = 1,
     depth = 1,
   }) {
     this.type = type;
-    this.normalizedPosition = normalizedPosition;
+    this.offset = offset;
     this.thickness = thickness;
     this.depth = depth;
 
@@ -43,6 +43,9 @@ export default class ViewPointerEdges {
       transparent: true,
       uniforms: {
         uAlpha: { value: 1.0 },
+        uOffset: {
+          value: this.offset,
+        },
       },
       vertexShader,
       fragmentShader,

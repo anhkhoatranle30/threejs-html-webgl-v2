@@ -5,6 +5,11 @@ import fragmentShader from './fragment.glsl';
 import Experience from '../../../Experience';
 import ViewPointerEdges from './Edges';
 
+const POINTER_STYLE = {
+  SIZE: 100,
+  MARGIN: 5,
+};
+
 export default class ViewPointer {
   constructor() {
     this.experience = new Experience();
@@ -18,7 +23,12 @@ export default class ViewPointer {
   }
 
   setGeometry() {
-    this.geometry = new THREE.PlaneBufferGeometry(0.2, 0.2, 1, 1);
+    this.geometry = new THREE.PlaneBufferGeometry(
+      POINTER_STYLE.SIZE / window.innerWidth,
+      POINTER_STYLE.SIZE / window.innerHeight,
+      1,
+      1
+    );
   }
 
   setMaterial() {
@@ -34,18 +44,39 @@ export default class ViewPointer {
 
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.mesh.position.x += 1.0;
 
-    this.leftEdge = new ViewPointerEdges({
+    const leftEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
+      depth: POINTER_STYLE.SIZE / window.innerHeight,
+      offset: new THREE.Vector3(-0.5, 0, 0),
     });
+    const rightEdge = new ViewPointerEdges({
+      type: 'vertical',
+      thickness: 5,
+      depth: POINTER_STYLE.SIZE / window.innerHeight,
+      offset: new THREE.Vector3(0.5, 0, 0),
+    });
+    const topEdge = new ViewPointerEdges({
+      type: 'horizonal',
+      thickness: 5,
+      depth: POINTER_STYLE.SIZE / window.innerWidth,
+      offset: new THREE.Vector3(0, 0.5, 0),
+    });
+    const bottomEdge = new ViewPointerEdges({
+      type: 'horizonal',
+      thickness: 5,
+      depth: POINTER_STYLE.SIZE / window.innerWidth,
+      offset: new THREE.Vector3(0, -0.5, 0),
+    });
+    this.edges = [leftEdge, rightEdge, topEdge, bottomEdge];
+
     this.scene.add(this.mesh);
   }
 
   update() {
     this.mesh.lookAt(this.experience.camera);
-    this.leftEdge.update();
+    this.edges.forEach((edge) => edge.update());
   }
 
   fadeOut() {
