@@ -7,7 +7,7 @@ import ViewPointerEdges from './Edges';
 
 const POINTER_STYLE = {
   SIZE: 100,
-  MARGIN: 5,
+  MARGIN: 50,
 };
 
 export default class ViewPointer {
@@ -48,26 +48,42 @@ export default class ViewPointer {
     const leftEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
-      depth: POINTER_STYLE.SIZE / window.innerHeight,
-      offset: new THREE.Vector3(-0.5, 0, 0),
+      depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
+      offset: new THREE.Vector3(
+        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
+        0,
+        0
+      ),
     });
     const rightEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
-      depth: POINTER_STYLE.SIZE / window.innerHeight,
-      offset: new THREE.Vector3(0.5, 0, 0),
+      depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
+      offset: new THREE.Vector3(
+        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
+        0,
+        0
+      ),
     });
     const topEdge = new ViewPointerEdges({
       type: 'horizonal',
       thickness: 5,
-      depth: POINTER_STYLE.SIZE / window.innerWidth,
-      offset: new THREE.Vector3(0, 0.5, 0),
+      depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
+      offset: new THREE.Vector3(
+        0,
+        (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
+        0
+      ),
     });
     const bottomEdge = new ViewPointerEdges({
       type: 'horizonal',
       thickness: 5,
-      depth: POINTER_STYLE.SIZE / window.innerWidth,
-      offset: new THREE.Vector3(0, -0.5, 0),
+      depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
+      offset: new THREE.Vector3(
+        0,
+        -(POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
+        0
+      ),
     });
     this.edges = [leftEdge, rightEdge, topEdge, bottomEdge];
 
