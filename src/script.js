@@ -46,7 +46,7 @@ enterModelButton.addEventListener('click', () => {
     enterModelButton.innerHTML = possibleContent.exit;
   } else {
     // Camera
-    experience.camera.loseFocusCurrentModel();
+    experience.loseFocusCurrentModel();
     // Forms
     hideAllForms();
     // Text

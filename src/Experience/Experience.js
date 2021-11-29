@@ -69,6 +69,13 @@ export default class Experience {
     this.world.activateViewPointer();
   }
 
+  loseFocusCurrentModel() {
+    // Camera
+    this.camera.loseFocusCurrentModel();
+    // World
+    this.world.deactivateViewPointer();
+  }
+
   switchModel(strModelName, jumpDuration) {
     this.camera.moveToModel(strModelName, jumpDuration);
   }

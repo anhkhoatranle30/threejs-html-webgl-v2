@@ -39,4 +39,8 @@ export default class World {
   activateViewPointer() {
     this.viewPointer.isActivated = true;
   }
+
+  deactivateViewPointer() {
+    this.viewPointer.isActivated = false;
+  }
 }
