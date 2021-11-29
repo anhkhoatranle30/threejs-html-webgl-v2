@@ -23,7 +23,7 @@ export default class ViewPointer {
     this.resources = this.experience.resources;
     this.toggleMouse = new ToggleMouse();
     this.isActivated = false;
-    this.currentPosition = 'none';
+    this.currentDirection = 'none';
 
     // Setup
     this.setGeometry();
@@ -57,6 +57,7 @@ export default class ViewPointer {
             POINTER_STYLE.MARGIN +
             POINTER_STYLE.EDGES.THICKNESS;
 
+          // if user moves cursor out of the edges
           if (Math.abs(deltaX) >= delta || Math.abs(deltaY) >= delta) {
             const direction = Coordinate2D.findDirection(
               POINTER_STYLE.POSITION,
@@ -65,9 +66,9 @@ export default class ViewPointer {
                 y: -this.toggleMouse.cursor.y,
               }
             );
-            if (direction !== this.currentPosition) {
-              this.currentPosition = direction;
-              console.log(this.currentPosition);
+            if (direction !== this.currentDirection) {
+              this.currentDirection = direction;
+              console.log(this.currentDirection);
             }
           }
 
@@ -79,6 +80,7 @@ export default class ViewPointer {
     this.toggleMouse.on('mouseup', () => {
       this.hideAll();
       this.toggleMouse.off('mousemove');
+      this.currentDirection = 'none';
     });
   }
 
