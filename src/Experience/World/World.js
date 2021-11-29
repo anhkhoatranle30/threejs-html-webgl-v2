@@ -1,6 +1,7 @@
 import Experience from '../Experience';
 import Environment from './Environment';
 import Overlay from './Geometries/Overlay';
+import ViewPointer from './Geometries/ViewPointer';
 import Water from './Geometries/Water';
 import BusterDrone from './Models/BusterDrone';
 import HeliBall from './Models/HeliBall';
@@ -22,6 +23,7 @@ export default class World {
       this.busterDrone = new BusterDrone();
       this.heliBall = new HeliBall();
       this.environment = new Environment();
+      this.viewPointer = new ViewPointer();
       this.overlay.fadeOut();
     });
   }
@@ -31,5 +33,6 @@ export default class World {
     if (this.mazdaCar) this.mazdaCar.update();
     if (this.heliBall) this.heliBall.update();
     if (this.floor) this.floor.update();
+    if (this.viewPointer) this.viewPointer.update();
   }
 }
