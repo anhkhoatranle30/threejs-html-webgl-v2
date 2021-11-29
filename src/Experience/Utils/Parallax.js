@@ -11,7 +11,7 @@ export default class Parallax extends EventEmitter {
     // Mousemove event
     window.addEventListener('mousemove', (_event) => {
       this.cursor.x = -(_event.clientX / window.innerWidth - 0.5) * 2;
-      this.cursor.y = (_event.clientY / window.innerWidth - 0.5) * 2;
+      this.cursor.y = -(_event.clientY / window.innerHeight - 0.5) * 2;
 
       this.trigger('mousemove');
     });
