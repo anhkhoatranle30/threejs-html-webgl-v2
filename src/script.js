@@ -33,8 +33,8 @@ enterModelButton.addEventListener('click', () => {
   };
 
   if (currentButtonContent === possibleContent.enter) {
-    // Camera
-    experience.camera.focusCurrentModel();
+    // Experience
+    experience.focusCurrentModel();
     // Forms
     showAllForms();
     // Text

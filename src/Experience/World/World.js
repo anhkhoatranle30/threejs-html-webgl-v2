@@ -35,4 +35,8 @@ export default class World {
     if (this.floor) this.floor.update();
     if (this.viewPointer) this.viewPointer.update();
   }
+
+  activateViewPointer() {
+    this.viewPointer.isActivated = true;
+  }
 }

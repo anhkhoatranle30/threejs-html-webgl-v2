@@ -18,11 +18,14 @@ export default class ViewPointer {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
     this.toggleMouse = new ToggleMouse();
+    this.isActivated = false;
 
     // Setup
     this.setGeometry();
     this.setMaterial();
     this.setMesh();
+    this.setEdges();
+    this.hideAll();
     // ToggleMouse mousedown & mouseup event
     this.toggleMouse.on('mousedown', () => {
       POINTER_STYLE.POSITION = new THREE.Vector3(
@@ -30,20 +33,18 @@ export default class ViewPointer {
         -this.toggleMouse.cursor.y,
         0
       );
+      if (this.isActivated) {
+        this.showAll();
+      }
       // Update positions
-      this.material.uniforms.uOffset.value = POINTER_STYLE.POSITION;
-      this.leftEdge.material.uniforms.uOffset.value =
-        this.calculateEdgeOffsetVector({ position: 'left' });
-      this.rightEdge.material.uniforms.uOffset.value =
-        this.calculateEdgeOffsetVector({ position: 'right' });
-      this.topEdge.material.uniforms.uOffset.value =
-        this.calculateEdgeOffsetVector({ position: 'top' });
-      this.bottomEdge.material.uniforms.uOffset.value =
-        this.calculateEdgeOffsetVector({ position: 'bottom' });
+      this.updateAllPositions();
+    });
+    this.toggleMouse.on('mouseup', () => {
+      this.hideAll();
     });
   }
 
-  calculateEdgeOffsetVector({ position = 'bototm' }) {
+  calculateEdgeOffsetVector({ position = 'bottom' }) {
     switch (position) {
       case 'left': {
         return new THREE.Vector3(
@@ -82,6 +83,34 @@ export default class ViewPointer {
     }
   }
 
+  updateAllPositions() {
+    this.material.uniforms.uOffset.value = POINTER_STYLE.POSITION;
+    this.leftEdge.material.uniforms.uOffset.value =
+      this.calculateEdgeOffsetVector({ position: 'left' });
+    this.rightEdge.material.uniforms.uOffset.value =
+      this.calculateEdgeOffsetVector({ position: 'right' });
+    this.topEdge.material.uniforms.uOffset.value =
+      this.calculateEdgeOffsetVector({ position: 'top' });
+    this.bottomEdge.material.uniforms.uOffset.value =
+      this.calculateEdgeOffsetVector({ position: 'bottom' });
+  }
+
+  hideAll() {
+    this.material.uniforms.uAlpha.value = 0;
+    this.leftEdge.material.uniforms.uAlpha.value = 0;
+    this.rightEdge.material.uniforms.uAlpha.value = 0;
+    this.topEdge.material.uniforms.uAlpha.value = 0;
+    this.bottomEdge.material.uniforms.uAlpha.value = 0;
+  }
+
+  showAll() {
+    this.material.uniforms.uAlpha.value = 1.0;
+    this.leftEdge.material.uniforms.uAlpha.value = 1.0;
+    this.rightEdge.material.uniforms.uAlpha.value = 1.0;
+    this.topEdge.material.uniforms.uAlpha.value = 1.0;
+    this.bottomEdge.material.uniforms.uAlpha.value = 1.0;
+  }
+
   setGeometry() {
     this.geometry = new THREE.PlaneBufferGeometry(
       (POINTER_STYLE.SIZE * 2) / window.innerWidth,
@@ -95,7 +124,7 @@ export default class ViewPointer {
     this.material = new THREE.ShaderMaterial({
       transparent: true,
       uniforms: {
-        uAlpha: { value: 1.0 },
+        uAlpha: { value: this.isActivated ? 1.0 : 0 },
         uOffset: { value: POINTER_STYLE.POSITION },
       },
       vertexShader,
@@ -105,7 +134,10 @@ export default class ViewPointer {
 
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
+    this.scene.add(this.mesh);
+  }
 
+  setEdges() {
     this.leftEdge = new ViewPointerEdges({
       type: 'vertical',
       thickness: 5,
@@ -131,52 +163,10 @@ export default class ViewPointer {
       offset: this.calculateEdgeOffsetVector({ position: 'bottom' }),
     });
     this.edges = [this.leftEdge, this.rightEdge, this.topEdge, this.bottomEdge];
-
-    this.scene.add(this.mesh);
   }
 
   update() {
     this.mesh.lookAt(this.experience.camera);
     this.edges.forEach((edge) => edge.update());
-  }
-
-  fadeIn() {
-    gsap
-      .to(this.material.uniforms.uAlpha, {
-        duration: 0.5,
-        value: 1.0,
-      })
-      .then(() => {
-        this.scene.remove(this.mesh);
-      });
-  }
-
-  fadeOut() {
-    gsap
-      .to(this.experience.camera.instance.position, {
-        duration: 0.5,
-        x: `+= 0.5`,
-        y: `+= 0.5`,
-        z: `+= 0.5`,
-      })
-      .then(() => {
-        gsap
-          .to(this.experience.camera.instance.position, {
-            duration: 0.5,
-            x: `-= 0.5`,
-            y: `-= 0.5`,
-            z: `-= 0.5`,
-          })
-          .then(() => {
-            gsap
-              .to(this.material.uniforms.uAlpha, {
-                duration: 2,
-                value: 0,
-              })
-              .then(() => {
-                this.scene.remove(this.mesh);
-              });
-          });
-      });
   }
 }

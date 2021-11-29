@@ -62,6 +62,13 @@ export default class Experience {
     this.camera.moveByCursor(this.parallax.cursor);
   }
 
+  focusCurrentModel() {
+    // Camera
+    this.camera.focusCurrentModel();
+    // World
+    this.world.activateViewPointer();
+  }
+
   switchModel(strModelName, jumpDuration) {
     this.camera.moveToModel(strModelName, jumpDuration);
   }
