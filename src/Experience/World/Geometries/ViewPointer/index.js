@@ -10,6 +10,9 @@ const POINTER_STYLE = {
   SIZE: 30,
   MARGIN: 25,
   POSITION: new THREE.Vector3(0, 0, 0),
+  EDGES: {
+    THICKNESS: 3,
+  },
 };
 
 export default class ViewPointer {
@@ -35,12 +38,27 @@ export default class ViewPointer {
       );
       if (this.isActivated) {
         this.showAll();
+        // Setup
+        this.updateAllPositions();
+        // mousemove event
+        this.toggleMouse.on('mousemove', () => {
+          const userMovedY =
+            ((-this.toggleMouse.cursor.y - POINTER_STYLE.POSITION.y) *
+              window.innerHeight) /
+            2;
+          const userMovedX =
+            ((-this.toggleMouse.cursor.x - POINTER_STYLE.POSITION.x) *
+              window.innerWidth) /
+            2;
+
+          // size / 2 + margin + thickness
+        });
       }
-      // Update positions
-      this.updateAllPositions();
     });
+
     this.toggleMouse.on('mouseup', () => {
       this.hideAll();
+      this.toggleMouse.off('mousemove');
     });
   }
 
@@ -140,25 +158,25 @@ export default class ViewPointer {
   setEdges() {
     this.leftEdge = new ViewPointerEdges({
       type: 'vertical',
-      thickness: 5,
+      thickness: POINTER_STYLE.EDGES.THICKNESS,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
       offset: this.calculateEdgeOffsetVector({ position: 'left' }),
     });
     this.rightEdge = new ViewPointerEdges({
       type: 'vertical',
-      thickness: 5,
+      thickness: POINTER_STYLE.EDGES.THICKNESS,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerHeight,
       offset: this.calculateEdgeOffsetVector({ position: 'right' }),
     });
     this.topEdge = new ViewPointerEdges({
       type: 'horizonal',
-      thickness: 5,
+      thickness: POINTER_STYLE.EDGES.THICKNESS,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
       offset: this.calculateEdgeOffsetVector({ position: 'top' }),
     });
     this.bottomEdge = new ViewPointerEdges({
       type: 'horizonal',
-      thickness: 5,
+      thickness: POINTER_STYLE.EDGES.THICKNESS,
       depth: (POINTER_STYLE.SIZE + POINTER_STYLE.MARGIN) / window.innerWidth,
       offset: this.calculateEdgeOffsetVector({ position: 'bottom' }),
     });

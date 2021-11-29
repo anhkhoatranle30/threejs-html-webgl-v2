@@ -60,33 +60,4 @@ export default class ViewPointerEdges {
   update() {
     this.mesh.lookAt(this.experience.camera);
   }
-
-  fadeOut() {
-    gsap
-      .to(this.experience.camera.instance.position, {
-        duration: 0.5,
-        x: `+= 0.5`,
-        y: `+= 0.5`,
-        z: `+= 0.5`,
-      })
-      .then(() => {
-        gsap
-          .to(this.experience.camera.instance.position, {
-            duration: 0.5,
-            x: `-= 0.5`,
-            y: `-= 0.5`,
-            z: `-= 0.5`,
-          })
-          .then(() => {
-            gsap
-              .to(this.material.uniforms.uAlpha, {
-                duration: 2,
-                value: 0,
-              })
-              .then(() => {
-                this.scene.remove(this.mesh);
-              });
-          });
-      });
-  }
 }
