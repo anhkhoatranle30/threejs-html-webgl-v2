@@ -18,7 +18,7 @@ export default class World {
     this.resources.on('ready', () => {
       // Setup
       // this.floor = new Floor();
-      this.floor = new Water();
+      // this.floor = new Water();
       this.shiba = new Shiba();
       this.busterDrone = new BusterDrone();
       this.heliBall = new HeliBall();
