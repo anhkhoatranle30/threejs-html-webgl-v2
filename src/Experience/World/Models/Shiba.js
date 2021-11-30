@@ -1,9 +1,11 @@
 import * as THREE from 'three';
 import Experience from '../../Experience.js';
 import POSITIONS from '../../Constants/modelAttributes.js';
+import Model from './Classes/Model.js';
 
-export default class Shiba {
+export default class Shiba extends Model {
   constructor() {
+    super('shiba');
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
@@ -13,6 +15,7 @@ export default class Shiba {
 
     this.setModel();
     // this.setAnimation();
+    this.startSpinning();
   }
 
   setModel() {
@@ -49,6 +52,6 @@ export default class Shiba {
   }
 
   update() {
-    this.animation.mixer.update(this.time.delta * 0.001);
+    // this.animation.mixer.update(this.time.delta * 0.001);
   }
 }
