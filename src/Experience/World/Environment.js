@@ -49,6 +49,8 @@ export default class Environment {
     this.environmentMap.texture.encoding = THREE.sRGBEncoding;
 
     this.scene.environment = this.environmentMap.texture;
+    this.scene.environment = this.environmentMap.texture;
+    this.scene.background = this.environmentMap.texture;
 
     this.environmentMap.updateMaterials();
   }
