@@ -67,7 +67,7 @@ export default class Experience {
     this.camera.focusCurrentModel();
     this.camera.isControlEnabled = false;
     // World
-    this.world.viewPointer.activate();
+    // this.world.viewPointer.activate();
   }
 
   loseFocusCurrentModel() {
@@ -75,7 +75,7 @@ export default class Experience {
     this.camera.loseFocusCurrentModel();
     this.camera.isControlEnabled = true;
     // World
-    this.world.viewPointer.deactivate();
+    // this.world.viewPointer.deactivate();
   }
 
   switchModel(strModelName, jumpDuration) {

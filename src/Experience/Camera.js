@@ -17,7 +17,7 @@ export default class Camera {
     this.target = this.currentSelectedModel.camera.lookAt.clone();
 
     this.setInstance();
-    // this.setControls();
+    this.setControls();
   }
 
   setInstance() {
@@ -32,10 +32,11 @@ export default class Camera {
     this.scene.add(this.instance);
   }
 
-  // setControls() {
-  //   this.controls = new OrbitControls(this.instance, this.canvas);
-  //   this.controls.enableDamping = true;
-  // }
+  setControls() {
+    this.controls = new OrbitControls(this.instance, this.canvas);
+    this.controls.enableDamping = true;
+    this.controls.enabled = false;
+  }
 
   resize() {
     this.instance.aspect = this.sizes.width / this.sizes.height;
@@ -43,7 +44,7 @@ export default class Camera {
   }
 
   update() {
-    // this.controls.update();
+    this.controls.update();
     if (this.currentSelectedModel) {
       this.instance.lookAt(this.target);
     }
@@ -100,20 +101,42 @@ export default class Camera {
 
   focusCurrentModel() {
     // this.target = this.currentSelectedModel.position;
-    gsap.to(this.target, {
-      duration: 0.5,
-      x: this.currentSelectedModel.position.x,
-      y: this.currentSelectedModel.position.y,
-      z: this.currentSelectedModel.position.z,
-    });
+    // Move target
+    gsap
+      .to(this.target, {
+        duration: 0.5,
+        x: this.currentSelectedModel.position.x,
+        y: this.currentSelectedModel.position.y,
+        z: this.currentSelectedModel.position.z,
+      })
+      .then(() => {
+        // Kill tweens
+        gsap.killTweensOf(this.instance.position);
+        gsap.killTweensOf(this.target);
+        // Orbit controls
+        this.controls.enabled = true;
+        this.controls.target.copy(this.target);
+      });
   }
 
   loseFocusCurrentModel() {
+    // Orbit controls
+    this.controls.enabled = false;
+    // Move target
     gsap.to(this.target, {
       duration: 0.5,
       x: this.currentSelectedModel.camera.lookAt.x,
       y: this.currentSelectedModel.camera.lookAt.y,
       z: this.currentSelectedModel.camera.lookAt.z,
     });
+    // Move camera
+    const destination = this.currentSelectedModel.camera.position.clone();
+    gsap.to(this.instance.position, {
+      duration: 0.5,
+      x: destination.x,
+      y: destination.y,
+      z: destination.z,
+    });
+    // .then(() => gsap.killTweensOf(this.instance.position));
   }
 }

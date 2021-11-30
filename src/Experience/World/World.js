@@ -23,7 +23,7 @@ export default class World {
       this.busterDrone = new BusterDrone();
       this.heliBall = new HeliBall();
       this.environment = new Environment();
-      this.viewPointer = new ViewPointer();
+      // this.viewPointer = new ViewPointer();
       this.overlay.fadeOut();
     });
   }
