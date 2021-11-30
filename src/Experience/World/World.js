@@ -22,6 +22,8 @@ export default class World {
       this.shiba = new Shiba();
       this.busterDrone = new BusterDrone();
       this.heliBall = new HeliBall();
+      this.models = [this.shiba, this.busterDrone, this.heliBall];
+
       this.environment = new Environment();
       // this.viewPointer = new ViewPointer();
       this.overlay.fadeOut();
@@ -29,10 +31,7 @@ export default class World {
   }
 
   update() {
-    if (this.busterDrone) this.busterDrone.update();
-    if (this.mazdaCar) this.mazdaCar.update();
-    if (this.heliBall) this.heliBall.update();
-    if (this.shiba) this.shiba.update();
+    if (this.models) this.models.forEach((model) => model.update());
     // if (this.floor) this.floor.update();
     if (this.viewPointer) this.viewPointer.update();
   }
