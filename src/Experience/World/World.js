@@ -32,7 +32,7 @@ export default class World {
     if (this.busterDrone) this.busterDrone.update();
     if (this.mazdaCar) this.mazdaCar.update();
     if (this.heliBall) this.heliBall.update();
-    if (this.floor) this.floor.update();
+    // if (this.floor) this.floor.update();
     if (this.viewPointer) this.viewPointer.update();
   }
 }
