@@ -3,6 +3,7 @@ import Time from './Time';
 
 export const ROTATION_TYPES = {
   RANDOM: 'random',
+  Y_AXIS: 'y-axis',
 };
 
 export default class Rotation {
@@ -43,6 +44,10 @@ export default class Rotation {
           this.rotateRandomly();
           break;
         }
+        case ROTATION_TYPES.Y_AXIS: {
+          this.rotateByYAxis();
+          break;
+        }
         default: {
           this.#isRotating = false;
         }
@@ -53,6 +58,9 @@ export default class Rotation {
   //#region Rotation strategies
   rotateRandomly() {
     this.#object[this.#rotationFieldName].x += Math.random() * 0.005;
+    this.#object[this.#rotationFieldName].y += Math.random() * 0.005;
+  }
+  rotateByYAxis() {
     this.#object[this.#rotationFieldName].y += Math.random() * 0.005;
   }
   //#endregion

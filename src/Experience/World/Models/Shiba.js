@@ -15,7 +15,7 @@ export default class Shiba extends Model {
 
     this.setModel();
     // this.setAnimation();
-    this.startSpinning();
+    // this.startSpinning();
   }
 
   setModel() {

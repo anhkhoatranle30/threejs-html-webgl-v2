@@ -12,7 +12,7 @@ export default class Model {
     // if (!this.rotation) {
     //    //composition
     // }
-    this.rotation = new Rotation(this.model);
+    this.rotation = new Rotation(this.model, ROTATION_TYPES.Y_AXIS);
     this.rotation.start();
   }
 
