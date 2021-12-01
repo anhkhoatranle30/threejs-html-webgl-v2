@@ -1,9 +1,11 @@
 import * as THREE from 'three';
 import Experience from '../../Experience.js';
 import POSITIONS from '../../Constants/modelAttributes.js';
+import Model from './Classes/Model';
 
-export default class HeliBall {
+export default class HeliBall extends Model {
   constructor() {
+    super('heliBall');
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
@@ -13,6 +15,7 @@ export default class HeliBall {
 
     this.setModel();
     this.setAnimation();
+    // this.startSpinning();
   }
 
   setModel() {
