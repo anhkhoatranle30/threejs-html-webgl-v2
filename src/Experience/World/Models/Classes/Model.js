@@ -18,7 +18,7 @@ export default class Model {
 
   stopSpinning() {
     const me = MODELS[this.name];
-    this.rotation.stopRotation();
-    this.rotation.set(0, me.rotation, 0);
+    if (this.rotation) this.rotation.stop();
+    this.model.rotation.set(0, me.rotation, 0);
   }
 }

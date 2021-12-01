@@ -24,6 +24,10 @@ export default class World {
       this.heliBall = new HeliBall();
       this.models = [this.shiba, this.busterDrone, this.heliBall];
 
+      // Startup
+      this.currentModel = this.models[0];
+      this.currentModel.startSpinning();
+
       this.environment = new Environment();
       // this.viewPointer = new ViewPointer();
       this.overlay.fadeOut();
@@ -34,5 +38,26 @@ export default class World {
     if (this.models) this.models.forEach((model) => model.update());
     // if (this.floor) this.floor.update();
     if (this.viewPointer) this.viewPointer.update();
+  }
+
+  updateCurrentModel(strModelName) {
+    this.models.forEach((model) => {
+      if (model.name !== strModelName) {
+        model.stopSpinning();
+      } else {
+        model.startSpinning();
+      }
+    });
+    this.currentModel = this.models.find(
+      (model) => model.name === strModelName
+    );
+  }
+
+  focusCurrentModel() {
+    this.currentModel.stopSpinning();
+  }
+
+  loseFocusCurrentModel() {
+    this.currentModel.startSpinning();
   }
 }
