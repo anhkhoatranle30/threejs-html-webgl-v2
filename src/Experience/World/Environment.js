@@ -46,7 +46,7 @@ export default class Environment {
         });
       },
     };
-    this.environmentMap.intensity = 2;
+    this.environmentMap.intensity = 0.6;
     this.environmentMap.texture = this.resources.items.environmentMapTexture;
     this.environmentMap.texture.encoding = THREE.sRGBEncoding;
 
