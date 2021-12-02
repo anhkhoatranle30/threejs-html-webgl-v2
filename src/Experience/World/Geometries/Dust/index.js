@@ -2,19 +2,27 @@ import * as THREE from 'three';
 import Experience from '../../../Experience';
 import vertexShader from './vertex.glsl';
 import fragmentShader from './fragment.glsl';
+import Time from '../../../Utils/Time';
 
 export default class Dust {
   constructor(radius, quantity) {
+    this.radius = radius;
+    this.quantity = quantity;
+
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
-    this.radius = radius;
-    this.quantity = quantity;
+    this.time = new Time();
 
     // Setup
     this.setGeometry();
     this.setMaterial();
     this.setPoints();
+
+    // Tick event
+    this.time.on('tick', () => {
+      this.material.uniforms.uTime.value = this.time.elapsed;
+    });
   }
 
   setGeometry() {
