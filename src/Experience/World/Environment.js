@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Experience from '../Experience.js';
+import Dust from './Geometries/Dust/index.js';
 
 export default class Environment {
   constructor() {
@@ -9,8 +10,9 @@ export default class Environment {
 
     // Setup
     this.setSunLight();
-    this.setEnvironmentMap();
+    // this.setEnvironmentMap();
     this.setFog();
+    this.setDusts();
     // this.setCoordinatesHelpers();
   }
 
@@ -65,5 +67,9 @@ export default class Environment {
   setFog() {
     this.fog = new THREE.Fog('#262837', 1, 15);
     this.scene.fog = this.fog;
+  }
+
+  setDusts() {
+    this.dusts = new Dust();
   }
 }
