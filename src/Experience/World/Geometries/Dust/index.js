@@ -4,12 +4,12 @@ import vertexShader from './vertex.glsl';
 import fragmentShader from './fragment.glsl';
 
 export default class Dust {
-  constructor() {
+  constructor(radius, quantity) {
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
-    this.radius = 500;
-    this.quantity = 5000;
+    this.radius = radius;
+    this.quantity = quantity;
 
     // Setup
     this.setGeometry();

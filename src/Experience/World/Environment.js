@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Experience from '../Experience.js';
 import Dust from './Geometries/Dust/index.js';
+import { findMaxDistance } from '../Constants/modelAttributes';
 
 export default class Environment {
   constructor() {
@@ -70,6 +71,6 @@ export default class Environment {
   }
 
   setDusts() {
-    this.dusts = new Dust();
+    this.dusts = new Dust(500, 1000);
   }
 }
