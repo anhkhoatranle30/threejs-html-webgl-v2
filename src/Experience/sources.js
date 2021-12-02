@@ -8,12 +8,12 @@ export default [
     name: 'environmentMapTexture',
     type: 'cubeTexture',
     path: [
-      'textures/environmentMap/px.jpg',
-      'textures/environmentMap/nx.jpg',
-      'textures/environmentMap/py.jpg',
-      'textures/environmentMap/ny.jpg',
-      'textures/environmentMap/pz.jpg',
-      'textures/environmentMap/nz.jpg',
+      'textures/environmentMap/2/px.jpg',
+      'textures/environmentMap/2/nx.jpg',
+      'textures/environmentMap/2/py.jpg',
+      'textures/environmentMap/2/ny.jpg',
+      'textures/environmentMap/2/pz.jpg',
+      'textures/environmentMap/2/nz.jpg',
     ],
   },
   {

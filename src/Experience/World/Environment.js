@@ -10,14 +10,14 @@ export default class Environment {
 
     // Setup
     this.setSunLight();
-    // this.setEnvironmentMap();
+    this.setEnvironmentMap();
     this.setFog();
     this.setDusts();
     // this.setCoordinatesHelpers();
   }
 
   setSunLight() {
-    this.sunLight = new THREE.DirectionalLight('#ffffff', 4);
+    this.sunLight = new THREE.DirectionalLight('#ffffff', 5);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.camera.far = 15;
     this.sunLight.shadow.mapSize.set(1024, 1024);
@@ -46,7 +46,7 @@ export default class Environment {
         });
       },
     };
-    this.environmentMap.intensity = 0.4;
+    this.environmentMap.intensity = 2;
     this.environmentMap.texture = this.resources.items.environmentMapTexture;
     this.environmentMap.texture.encoding = THREE.sRGBEncoding;
 
