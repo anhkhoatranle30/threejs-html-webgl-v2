@@ -56,7 +56,7 @@ export default class Dust {
       fragmentShader,
       uniforms: {
         uSize: {
-          value: 2 * this.experience.renderer.instance.getPixelRatio(),
+          value: 5000 * this.experience.renderer.instance.getPixelRatio(),
         },
         uTime: { value: 0 },
       },
