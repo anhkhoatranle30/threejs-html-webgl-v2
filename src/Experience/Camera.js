@@ -84,7 +84,7 @@ export default class Camera {
       const distanceToCenter = Calculator.CalcDistanceTwoPoints({
         source: sourceCameraPosition,
         destination: new THREE.Vector3(),
-        isEnalbled: { x: true, z: true },
+        isEnabled: { x: true, z: true },
       });
       const distanceFactor = distanceToCenter / 233;
       gsap
