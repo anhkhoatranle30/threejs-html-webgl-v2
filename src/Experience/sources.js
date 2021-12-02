@@ -4,18 +4,18 @@ export default [
     type: 'gltfModel',
     path: 'models/buster_drone/scene.gltf',
   },
-  {
-    name: 'environmentMapTexture',
-    type: 'cubeTexture',
-    path: [
-      'textures/environmentMap/2/px.jpg',
-      'textures/environmentMap/2/nx.jpg',
-      'textures/environmentMap/2/py.jpg',
-      'textures/environmentMap/2/ny.jpg',
-      'textures/environmentMap/2/pz.jpg',
-      'textures/environmentMap/2/nz.jpg',
-    ],
-  },
+  // {
+  //   name: 'environmentMapTexture',
+  //   type: 'cubeTexture',
+  //   path: [
+  //     'textures/environmentMap/2/px.jpg',
+  //     'textures/environmentMap/2/nx.jpg',
+  //     'textures/environmentMap/2/py.jpg',
+  //     'textures/environmentMap/2/ny.jpg',
+  //     'textures/environmentMap/2/pz.jpg',
+  //     'textures/environmentMap/2/nz.jpg',
+  //   ],
+  // },
   {
     name: 'shiba',
     type: 'gltfModel',

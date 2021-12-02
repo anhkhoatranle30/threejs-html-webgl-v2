@@ -10,7 +10,7 @@ export default class Environment {
 
     // Setup
     this.setSunLight();
-    this.setEnvironmentMap();
+    // this.setEnvironmentMap();
     this.setFog();
     this.setDusts();
     // this.setCoordinatesHelpers();
