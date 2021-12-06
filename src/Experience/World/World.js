@@ -1,8 +1,7 @@
 import Experience from '../Experience';
 import Environment from './Environment';
 import Overlay from './Geometries/Overlay';
-import ViewPointer from './Geometries/ViewPointer';
-import Water from './Geometries/Water';
+import LineFloor from './Geometries/LineFloor';
 import BusterDrone from './Models/BusterDrone';
 import HeliBall from './Models/HeliBall';
 import Shiba from './Models/Shiba';
@@ -17,8 +16,7 @@ export default class World {
     // Wait for resources
     this.resources.on('ready', () => {
       // Setup
-      // this.floor = new Floor();
-      // this.floor = new Water();
+      this.lineFloor = new LineFloor(500, 500);
       this.shiba = new Shiba();
       this.busterDrone = new BusterDrone();
       this.heliBall = new HeliBall();
