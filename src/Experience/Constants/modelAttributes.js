@@ -7,10 +7,10 @@ export const textPositions = {
 
 const MODELS = {
   shiba: {
-    position: new THREE.Vector3(-192.5, 2.5, 125),
+    position: new THREE.Vector3(-62.5, 2.5, 55),
     camera: {
-      position: new THREE.Vector3(-190, 3, 128),
-      lookAt: new THREE.Vector3(-190, 1.75, 120),
+      position: new THREE.Vector3(-60, 3, 58),
+      lookAt: new THREE.Vector3(-60, 1.75, 50),
     },
     scale: 3,
     rotation: Math.PI * 0.2,
